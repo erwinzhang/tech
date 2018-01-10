@@ -1,0 +1,70 @@
+Install and Config
+	Install on mac: https://dtflaneur.wordpress.com/2015/10/02/installing-hadoop-on-mac-osx-el-capitan/
+
+	Issues:
+		1). After install and config, run hadoop command, Warring "WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable" happens.
+			Resolution: http://www.cnblogs.com/likui360/p/6558749.html
+
+
+
+Core conception
+-HDFS
+
+-Block
+    File in HDFS is stored by block, default block size is 64MB, block is storage logic unit.
+
+-NameNode
+	Is admin node, store file unit data
+		1). File and data block mapping
+		2). Data block and data node mapping
+
+-DataNode
+	Is working node, store data block
+
+
+Data management strategy
+  1). Every block has three copies
+  2). DataNode send heartbeat to NameNode periodly
+  3). Secondary NameNode, dync unit data image file and edit log periodly, when NameNode fails, secondary become main NameNode.
+
+
+File Read/Write
+	Read: search and responde client with DataNode
+	Write:
+		1). File splite to block
+		2). Return available DataNodes by NameNode
+		3). Write to Blocks in DataNode
+		4). Pipeline copys
+		5). Update unit data to NameNode
+
+
+MapReduce
+	Task split to multiple sub-tasks(map-tasks).
+	Input split->Shuffle->Output
+
+	-Job & Task
+
+	-JobTacker, main node, job schedule, allocate task, monitor.
+	-TaskTracker, execute task, report task status.
+
+-YARN
+	ResourceManager
+		1). Allocate and schedule resources
+		2). Start and monitor ApplicationMaster
+		3). Monitor NodeManager
+	NodeManager
+		1). Manage single node resource
+		2). Handle command from ResourceManager
+		3). Handle command from ApplicationMaster
+
+
+
+Commands
+get, put, copyFromLocal, copyToLocal
+
+hdfs dfs help
+
+
+
+
+
