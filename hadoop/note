@@ -66,5 +66,18 @@ hdfs dfs help
 
 
 
+HBase
+	Distributed DB
+		RowKey
+		Column Family
+		TimeStamp
+
+Spark
+	Based on memory Dustributed compute
+
+
+
+
+
 
 
