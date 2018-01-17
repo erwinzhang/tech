@@ -1,0 +1,38 @@
+Install and config
+	brew install sqoop
+
+Import
+Check DB connections and list databases/tables
+	sqoop list-databases --connect jdbc:mysql://localhost:8889 --username root --password root
+	sqoop list-tables --connect jdbc:mysql://localhost:8889/mlrs_production --username root --password root
+
+Import full table
+	sqoop import --connect jdbc:mysql://localhost:8889/mlrs_production --username root --password root --table apps -m 2
+Import part table
+	sqoop import --connect jdbc:mysql://localhost:8889/mlrs_production --username root --password root --query "select * from config where id > 1 and \$CONDITIONS" --target-dir /user --split-by config.id
+	--columns
+	--where
+Import from file
+	sqoop --options-file sqoop.im	
+
+Issue#1. When use --password-file, it will report a "Access denied for user 'root'@'localhost' (using password: YES)" error
+		Resolution: https://stackoverflow.com/questions/29696370/sqoop-import-password-file-function-not-working-properly-in-sqoop-1-4-4/36818269
+
+
+Imcremental Import
+	--check-column
+	--incremental <import-type> Define an incremental import of type 'append' or 'lastmodified'
+	--last-value
+	append:
+	sqoop import --connect jdbc:mysql://localhost:8889/mlrs_production --username root --password root --table apps -m 1 --check-column id --incremental append --last-value 9
+	lastmodified
+	Column type is timestamp or date value
+
+
+Export
+
+	--update-mode updateonly(defaule) ir allowinsert
+
+	sqoop export --connect jdbc:mysql://localhost:8889/mlrs_production --username root --password root --table apps2 --export-dir /user/erzhang/apps/
+	
+

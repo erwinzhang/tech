@@ -1,13 +1,42 @@
 Install and Config
 	Install on mac: https://dtflaneur.wordpress.com/2015/10/02/installing-hadoop-on-mac-osx-el-capitan/
 
+	Core-site.xml
+	  <property>
+		<name>hadoop.tmp.dir</name>
+    	<value>/usr/local/Cellar/hadoop/hdfs/tmp</value>
+      </property>
+      <!-- Store the data when hadoop running, not a temp folder-->	
+
+    hdfs-site.xml
+      <property>
+    	<name>dfs.replication</name>
+    	<value></value>
+  	  </property>  
+  	  <!-- Replication number -->
+
+  	yarn-site.xml
+  	<property>
+        <name>yarn.resourcemanager.hostname</name>
+    	<value>localhost</value>
+  	</property>
+  	<!-- Define resourcemanager address-->
+	<property>
+    	<name>yarn.nodemanager.aux-services</name>
+    	<value>mapreduce_shuffle</value>
+  	</property>  
+  	<!-- The way mapreduce get data when running shuffle -->
+
+  	format HDFS namenode: hdfs namenode -format
+
+
 	Issues:
 		1). After install and config, run hadoop command, Warring "WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable" happens.
 			Resolution: http://www.cnblogs.com/likui360/p/6558749.html
+		2). http://www.dedunu.info/2015/05/how-to-fix-incompatible-clusterids-in.html
 
 
-
-Core conception
+Core conceptions
 -HDFS
 
 -Block
@@ -17,6 +46,11 @@ Core conception
 	Is admin node, store file unit data
 		1). File and data block mapping
 		2). Data block and data node mapping
+	fsimage, edits, fstime
+
+-SecondaryNameNode
+	Cannot replace NameNode, not support hot backup.
+	Download metadata(fsimage and edits files), merge them and replace old fsiumage file.
 
 -DataNode
 	Is working node, store data block
@@ -37,6 +71,10 @@ File Read/Write
 		4). Pipeline copys
 		5). Update unit data to NameNode
 
+MetaData
+	FileName, replicas, block-ids, id-hosts
+
+
 
 MapReduce
 	Task split to multiple sub-tasks(map-tasks).
@@ -56,6 +94,12 @@ MapReduce
 		1). Manage single node resource
 		2). Handle command from ResourceManager
 		3). Handle command from ApplicationMaster
+	YarnChild
+	ApplicationMaster
+		1). Apply for resource from RM
+		2). Allocate task
+		3). Start/Stop task
+		4). Track task status.
 
 
 
