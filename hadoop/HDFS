@@ -1,0 +1,19 @@
+HDFS
+*Auto-Scale
+*Failover
+*HA
+*High Throughput
+
+HDFS shell
+	hdfs dfs -ls /
+			 -put
+			 -get
+			 -appendToFile
+			 -getmerge
+			 -setrep  #Set replication number
+			 -stat
+
+
+YARN
+
+
