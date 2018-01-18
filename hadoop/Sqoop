@@ -34,5 +34,7 @@ Export
 	--update-mode updateonly(defaule) ir allowinsert
 
 	sqoop export --connect jdbc:mysql://localhost:8889/mlrs_production --username root --password root --table apps2 --export-dir /user/erzhang/apps/
-	
 
+
+Sqoop Job
+	sqoop job --list

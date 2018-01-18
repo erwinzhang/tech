@@ -1,0 +1,14 @@
+Install and Config
+	config hadoop_home in hive-env.sh
+	config mysql jdbc connection in hive-site.xml  https://www.edureka.co/blog/apache-hive-installation-on-ubuntu
+
+	set hive debug modle: hive -hiveconf hive.root.logger=DEBUG,console
+
+	init database
+	schematool -dbType mysql -initSchema --verbose
+
+
+Single user mode
+Multi-user mode
+Remote mode
+
