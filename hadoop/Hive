@@ -12,3 +12,31 @@ Single user mode
 Multi-user mode
 Remote mode
 
+
+CLI
+	Change config value by:
+		1). hive-site.xml
+		2). hive --hiveconf property=value
+		3). In hive CLI, set property=value
+
+
+	hive -d col=id --database first
+		select ${col} from firsttb;
+
+	hive -e "select * from firstdb" --database firstdb;
+
+	hive -f file.hql 
+	hive -f hdfs://localhost:9000/user/file.hql  #use file in hdfs
+	hive -i file.hql
+
+	In CLI command:
+		set
+		set -v  #list all sets values
+		reset
+		add [FILE|JAR|ARCHIVE]
+		list
+		delete
+		! <SHELL COMMAND>
+		dfs <hdfs dfs COMMAND>
+		QUERY
+
