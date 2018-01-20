@@ -90,6 +90,54 @@ Data Types
 	cast(value as type), cast a value to another type
 
 
+Create Table
+	Managed Table(Internal table, temp use only)
+
+	External Table
+
+
+desc formatted first;  #show table info
+
+
+Data storage Types
+	TextFile, default
+	SequenceFile
+	ORC
+	PARQUET
+	AVRO
+	RCFILE
+
+row format delimited
+	fields terminated by ','
+	stored as TEXTFILE
+	Location '/';
+
+row format serde
+	'Regex'/'JSON'/'CSV/TSV'
+	stored as TEXTFILE
+
+
+Partition Table
+	partitioned by (par_col par_type)
+	static and dynamic partition (set hive.exec.dynamic.partition=true)
+	mode: strict/nonstrict
+	clustered by
+	sort by
+	distributed by
+
+Bucket(Bucketed Sorted Tables)
+
+Skewed Tables
+
+Temporary Tables
+
+DROP TABLE [IF EXISTS TABLE_NAME [PURGE];
+TRUNCATE TABLE TABLE_NAME[PARTITION partition_spec];
+
+
+
+
+
 
 
 
