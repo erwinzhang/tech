@@ -134,8 +134,44 @@ Temporary Tables
 DROP TABLE [IF EXISTS TABLE_NAME [PURGE];
 TRUNCATE TABLE TABLE_NAME[PARTITION partition_spec];
 
+ALTER TABLE table_name
+RENAME TO #rename table
+SET TBLPROPERTIES
+CLUSTERED    INTO num_buckets BUCKETS
+
+ADD PARTITION
+EXCHANGE PARTITION
+DROP PARTITION
+ARCHIVE
+UNARCHIVE
+
+SET FILEFORMAT
+SET LOCATION
+ENABLE|DISABLE NO_DROP[CASCADE]
+ENABLE|DISABLE OFFLINE
+
+MSCK REPAIR TABLE table_name;
 
 
+
+VIEW
+	CREATE VIEW view_name AS SELECT ;
+	ALTER VIEW
+	DROP VIEW
+
+INDEX
+
+
+show tables like in databases '*f*|d';
+
+LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename
+load data inpath '/user/hive/warehouse/hivedb.db/first/000000_0' into table firsttb;
+
+INSERT OVERWRITE TABLE tablename select_statement FROM from_statement;
+INSERT INTO TABlE tablename
+
+Export table
+insert overwrite local directory '/Developer/DATA' select * from firsttb;
 
 
 
