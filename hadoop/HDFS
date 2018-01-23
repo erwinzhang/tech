@@ -13,7 +13,10 @@ HDFS shell
 			 -setrep  #Set replication number
 			 -stat
 
+Start Cluster
+	start-dfs.sh
 
-YARN
+
+DistributedCache
 
 
