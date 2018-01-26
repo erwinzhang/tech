@@ -43,7 +43,7 @@ Core conceptions
     File in HDFS is stored by block, default block size is 64MB, block is storage logic unit.
 
 -NameNode
-	Is admin node, store file unit data
+	Is admin node, store file metadata , metadata is stored in menmery
 		1). File and data block mapping
 		2). Data block and data node mapping
 	fsimage, edits, fstime
@@ -120,6 +120,13 @@ Spark
 	Based on memory Dustributed compute
 
 
+
+Run command in backround under Linux
+	nohub COMMAND 1>/dev/null 2>&1 &
+list the nohub jobs
+	jobs
+make the job in frontend
+	fg
 
 
 

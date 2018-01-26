@@ -17,6 +17,29 @@ Start Cluster
 	start-dfs.sh
 
 
+Auto-Scale
+	Start datanode service on new added datanode
+	Add datanode in slaves
+
+	start a datanode process: hadoop-daemon.sh start datanode
+
+
 DistributedCache
 
 
+important configurations:
+dfs.blocksize
+	default is 128M, we can change it in hadoop client core-site.xml config
+
+dfs.replication
+	default 3, it's also used in hadoop client
+
+dfs.namenode.name.dir
+	default: file://${hadoop.tmp.dir}/dfs/name, used in server side
+	The correct config on prod is:
+		config multiple dir for namenode, and mounted in different disk.
+		e.g. <value>/mbt/dsk1,/mnt/dsk2</value>
+
+dfs.datanode.data.dir
+	default datanode working dir, default is file://${hadoop.tmp.dir}/dfs/data
+	<value>/dsk1/data,/dsk2/data</value>
