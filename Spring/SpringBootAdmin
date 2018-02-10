@@ -1,0 +1,2 @@
+Have to add below line in application.properties at Client side, otherwise, no info shown in Applicaion Detail page
+	management.security.enabled=false
